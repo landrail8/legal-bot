@@ -178,54 +178,59 @@ def init_db():
 
 # Добавление или обновление пользователя в базе данных
 def add_or_update_user(chat_id):
-    conn = sqlite3.connect('/Users/viacheslavpetrov/Desktop/code2/users.db')
-    cursor = conn.cursor()
-    try:
-        # Использование плейсхолдеров для username и password
-        cursor.execute("INSERT OR IGNORE INTO users (chat_id, username, password, is_authorized) VALUES (?, '', '', 0)", (chat_id,))
-        conn.commit()
-        print("User added/updated successfully")
-    except Exception as e:
-        print(f"Error adding/updating user: {e}")
-    finally:
-        conn.close()
+    print("Let's fix it!")
+    # conn = sqlite3.connect('/Users/viacheslavpetrov/Desktop/code2/users.db')
+    # cursor = conn.cursor()
+    # try:
+    #     # Использование плейсхолдеров для username и password
+    #     cursor.execute("INSERT OR IGNORE INTO users (chat_id, username, password, is_authorized) VALUES (?, '', '', 0)", (chat_id,))
+    #     conn.commit()
+    #     print("User added/updated successfully")
+    # except Exception as e:
+    #     print(f"Error adding/updating user: {e}")
+    # finally:
+    #     conn.close()
 
 
 
 # Функция авторизации пользователя
 def authorize_user(username, password, chat_id):
-    conn = sqlite3.connect('/Users/viacheslavpetrov/Desktop/code2/users.db')
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (username, password))
-    user = cursor.fetchone()
-    if user:
-        cursor.execute("UPDATE users SET chat_id = ?, is_authorized = 1 WHERE username = ?", (chat_id, username))
-        conn.commit()
-        result = True
-    else:
-        result = False
-    conn.close()
-    return result
+    print("Let's fix it!")
+    # conn = sqlite3.connect('/Users/viacheslavpetrov/Desktop/code2/users.db')
+    # cursor = conn.cursor()
+    # cursor.execute("SELECT * FROM users WHERE username = ? AND password = ?", (username, password))
+    # user = cursor.fetchone()
+    # if user:
+    #     cursor.execute("UPDATE users SET chat_id = ?, is_authorized = 1 WHERE username = ?", (chat_id, username))
+    #     conn.commit()
+    #     result = True
+    # else:
+    #     result = False
+    # conn.close()
+    # return result
+    return True
 
 # Проверка, авторизован ли пользователь
 def is_user_authorized(chat_id):
-    conn = sqlite3.connect('/Users/viacheslavpetrov/Desktop/code2/users.db')
-    cursor = conn.cursor()
-    cursor.execute("SELECT is_authorized FROM users WHERE chat_id = ?", (chat_id,))
-    result = cursor.fetchone()
-    conn.close()
-    return result[0] == 1 if result else False
+    # conn = sqlite3.connect('/Users/viacheslavpetrov/Desktop/code2/users.db')
+    # cursor = conn.cursor()
+    # cursor.execute("SELECT is_authorized FROM users WHERE chat_id = ?", (chat_id,))
+    # result = cursor.fetchone()
+    # conn.close()
+    # return result[0] == 1 if result else False
+    return True
 
 def add_or_update_user_phone_and_username(chat_id, phone_number):
-    conn = sqlite3.connect('/Users/viacheslavpetrov/Desktop/code2/users.db')
-    cursor = conn.cursor()
-    # Обновляем username, phone_number и устанавливаем пароль 1111 для данного chat_id
-    cursor.execute("""
-        UPDATE users 
-        SET phone_number = ?, username = ?, password = '1111'
-        WHERE chat_id = ?""", (phone_number, phone_number, chat_id))
-    conn.commit()
-    conn.close()
+    print("Let's fix it!")
+    # conn = sqlite3.connect('/Users/viacheslavpetrov/Desktop/code2/users.db')
+    # cursor = conn.cursor()
+    # # Обновляем username, phone_number и устанавливаем пароль 1111 для данного chat_id
+    # cursor.execute("""
+    #     UPDATE users 
+    #     SET phone_number = ?, username = ?, password = '1111'
+    #     WHERE chat_id = ?""", (phone_number, phone_number, chat_id))
+    # conn.commit()
+    # conn.close()
 
 
 
@@ -338,6 +343,6 @@ def option_callback(call):
     response = option_responses[cat_id][opt_id]
     bot.edit_message_text(text=response, chat_id=call.message.chat.id, message_id=call.message.message_id)
 
-init_db()
+# init_db()
 
 bot.polling(none_stop=True)
