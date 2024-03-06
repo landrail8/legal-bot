@@ -6,7 +6,8 @@ WORKDIR /workdir
 COPY . /workdir
 
 # install dependencies
-RUN pip install --user telebot
+# RUN pip install --user telebot
+RUN pip install -r requirements.txt
 
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get -yq --no-install-recommends install sqlite3 && \
