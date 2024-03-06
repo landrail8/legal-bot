@@ -8,8 +8,6 @@ from telebot.types import ReplyKeyboardRemove
 load_dotenv(find_dotenv())
 bot_token = os.environ.get("BOT_TOKEN")
 
-# bot_token = "6342689121:AAHP-iNYCgICjCsQo6mpbMvhdBBKABvJYYc" # PROD
-# bot_token = "7174920362:AAHGyz8DH0PDBI2UYxW4en7qee5UsgJq2X0" # DEV
 bot = telebot.TeleBot(bot_token)
 
 # Словарь с идентификаторами для категорий и опций
