@@ -257,15 +257,15 @@ def send_welcome(message):
 def greet(message):
     send_welcome(message)
 
-@bot.message_handler(func=lambda message: message.text == "Авторизация")
-def request_login(message):
-    msg = bot.send_message(message.chat.id, "Введите ваш логин и пароль через пробел.", reply_markup=ReplyKeyboardRemove())
-    bot.register_next_step_handler(msg, process_login_password)
+@bot.message_handler(content_types=['contact']) #func=lambda message: message.text == "Авторизация")
+# def request_login(message):
+#     msg = bot.send_message(message.chat.id, "Введите ваш логин и пароль через пробел.", reply_markup=ReplyKeyboardRemove())
+#     bot.register_next_step_handler(msg, process_login_password)
 def process_login_password(message):
     try:
-        username, password = message.text.split(" ", 1)
-        if authorize_user(username, password, message.chat.id):
-            bot.send_message(message.chat.id, "Вы успешно авторизованы.")
+        # username, password = message.text.split(" ", 1)
+        # if authorize_user(username, password, message.chat.id):
+            # bot.send_message(message.chat.id, "Вы успешно авторизованы.")
             # Создаем клавиатуру после успешной авторизации
             markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
             button4 = types.KeyboardButton("Инструкция по пользованию")
@@ -273,11 +273,11 @@ def process_login_password(message):
             button3 = types.KeyboardButton("Поддержка")
             markup.add(button1, button3, button4)
             bot.send_message(message.chat.id, "Выберите один из пунктов меню:", reply_markup=markup)
-        else:
-            bot.send_message(message.chat.id, "Неверный логин или пароль. Пожалуйста, попробуйте снова.")
-            # Запрашиваем логин и пароль заново
-            msg = bot.send_message(message.chat.id, "Введите ваш логин и пароль через пробел.")
-            bot.register_next_step_handler(msg, process_login_password)
+        # else:
+        #     bot.send_message(message.chat.id, "Неверный логин или пароль. Пожалуйста, попробуйте снова.")
+        #     # Запрашиваем логин и пароль заново
+        #     msg = bot.send_message(message.chat.id, "Введите ваш логин и пароль через пробел.")
+        #     bot.register_next_step_handler(msg, process_login_password)
     except ValueError:
         bot.send_message(message.chat.id, "Пожалуйста, введите логин и пароль корректно.")
         # Запрашиваем логин и пароль заново
@@ -298,7 +298,7 @@ def request_phone(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     btn = types.KeyboardButton("Отправить номер телефона", request_contact=True)
     markup.add(btn)
-    bot.send_message(message.chat.id, "Нажмите на кнопку \"Отправить номер телефона\". \nЭто предоставит чат-боту возможность предложить вам авторизацию.", reply_markup=markup)
+    bot.send_message(message.chat.id, "Нажмите на кнопку \"Отправить номер телефона\". \nЭто предоставит чат-боту возможность предложить авторизовать вас.", reply_markup=markup)
 
 @bot.message_handler(func=lambda message: message.text == "Инструкция по пользованию")
 def send_message(message):
@@ -319,19 +319,19 @@ def category_callback(call):
     bot.edit_message_text("Выберите опцию:", chat_id=call.message.chat.id, message_id=call.message.message_id, reply_markup=markup)
 
 
-@bot.message_handler(content_types=['contact'])
-def contact_handler(message):
-    phone_number = message.contact.phone_number
-    chat_id = message.chat.id
-    add_or_update_user_phone_and_username(chat_id, phone_number)
-    bot.send_message(chat_id, "Отлично! Теперь вам необходимо авторизоваться, \n\
-Это предоставит Вам возможность полноценно пользоваться функционалом чат-бота. \n\
-Для прохождения авторизации, нажмите «Авторизация» и введите в поле сообщения ваш логин: \n\
-– это ваш номер телефона без + в начале, и пароль, который вы получили в информационном письме на адрес вашей корпоративной электронной почте. ")
-    markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
-    button2 = types.KeyboardButton("Авторизация")
-    markup.add(button2)
-    bot.send_message(message.chat.id, "Теперь пройдите авторизацию, для этого нажмите на кнопку \"Авторизация\"", reply_markup=markup)
+# @bot.message_handler(content_types=['contact'])
+# def contact_handler(message):
+#     phone_number = message.contact.phone_number
+#     chat_id = message.chat.id
+#     # add_or_update_user_phone_and_username(chat_id, phone_number)
+#     bot.send_message(chat_id, "Отлично! Теперь вам необходимо авторизоваться, \n\
+# Это предоставит Вам возможность полноценно пользоваться функционалом чат-бота. \n\
+# Для прохождения авторизации, нажмите «Авторизация» и введите в поле сообщения ваш логин: \n\
+# – это ваш номер телефона без + в начале, и пароль, который вы получили в информационном письме на адрес вашей корпоративной электронной почте. ")
+#     markup = types.ReplyKeyboardMarkup(row_width=2, resize_keyboard=True)
+#     button2 = types.KeyboardButton("Авторизация")
+#     markup.add(button2)
+#     bot.send_message(message.chat.id, "Теперь пройдите авторизацию, для этого нажмите на кнопку \"Авторизация\"", reply_markup=markup)
 
 @bot.callback_query_handler(func=lambda call: call.data == "back_to_categories")
 def back_to_categories(call):
