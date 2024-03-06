@@ -1,11 +1,12 @@
-from dotenv import dotenv_values
+import os
+from dotenv import load_dotenv, find_dotenv
 import telebot
 from telebot import types
 import sqlite3
 from telebot.types import ReplyKeyboardRemove
 
-config = dotenv_values(".env")
-bot_token = config.BOT_TOKEN
+load_dotenv(find_dotenv())
+bot_token = os.environ.get("BOT_TOKEN")
 
 # bot_token = "6342689121:AAHP-iNYCgICjCsQo6mpbMvhdBBKABvJYYc" # PROD
 # bot_token = "7174920362:AAHGyz8DH0PDBI2UYxW4en7qee5UsgJq2X0" # DEV
