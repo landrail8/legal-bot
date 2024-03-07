@@ -1,4 +1,4 @@
-import os
+import os, time
 from dotenv import load_dotenv, find_dotenv
 import telebot
 from telebot import types
@@ -350,4 +350,12 @@ def option_callback(call):
 
 # init_db()
 
-bot.polling(none_stop=True)
+# bot.polling(none_stop=True)
+if __name__=='__main__':
+    while True:
+        try:
+            bot.polling(non_stop=True, interval=0)
+        except Exception as e:
+            print(e)
+            time.sleep(5)
+            continue
