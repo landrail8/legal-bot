@@ -1,0 +1,34 @@
+version: '3.5'
+
+volumes:
+  eaglebot_data:
+
+services:
+  eaglebot_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    # dns: 8.8.8.8 # need for emailing
+    # network_mode: "bridge" # need for emailing
+
+    # # networks:
+    # #   - ifcmnet
+    # environment:
+    #   POSTGRES_DB: ${POSTGRES_DB}
+    #   POSTGRES_USER: ${POSTGRES_USER}
+    #   POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    #   # PGDATA: /data/postgres
+
+    volumes:
+      - eaglebot_data:/var/lib/sqlite/data/
+    # ports:
+    #   - "5039:5432"
+    # restart: unless-stopped
+    # healthcheck:
+    #   test: [ "CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}" ]
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 5
+    env_file:
+      - .env.production

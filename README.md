@@ -1,3 +1,16 @@
+# local dev
+## Docker 
+### build
+docker build . -t eaglebot
+
+### run
+docker run -it eaglebot
+
+## do not recommend raw launch
+pip3 install -r requirements.txt
+python3 eaglebot.py
+
+
 # Руководство по развертыванию Telegram бота ifcm
 # Предварительные требования
 Чистый сервер с Ubuntu  
