@@ -9,8 +9,8 @@ services:
       context: .
       dockerfile: Dockerfile
 
-    # dns: 8.8.8.8 # need for emailing
-    # network_mode: "bridge" # need for emailing
+    dns: 8.8.8.8 # need for emailing
+    network_mode: "bridge" # need for emailing
 
     # # networks:
     # #   - ifcmnet
