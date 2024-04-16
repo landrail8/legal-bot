@@ -119,7 +119,7 @@ def callback_query(call):
 def send_claim(call):
     _, cat_id, opt_id = call.data.split('_')
     claim = {
-        "opt5": get_path_file_to_send(files_to_sending["Certificate_of_Insurance"]["filename"])  #"/Users/viacheslavpetrov/Desktop/IFCM/Сертификат о страховании.pdf",
+        "opt5": get_path_file_to_send(files_to_sending["Certificate_of_Insurance"]["filename"])
     }
     doc_path = None
 
@@ -164,7 +164,7 @@ def send_claim(call):
 def send_agreement(call):
     _, cat_id, opt_id = call.data.split('_')
     agreement = {
-        "opt8": "/Users/viacheslavpetrov/Desktop/IFCM/Сертификат о страховании.pdf",
+        "opt8": get_path_file_to_send(files_to_sending["Certificate_of_Insurance"]["filename"]),
     }
     doc_path = None
 
@@ -214,7 +214,7 @@ def send_agreement(call):
 def send_poa(call):
     _, cat_id, opt_id = call.data.split('_')
     poa = {
-        "opt5": "/Users/viacheslavpetrov/Desktop/IFCM/Сертификат о страховании.pdf",
+        "opt5": get_path_file_to_send(files_to_sending["Certificate_of_Insurance"]["filename"]),
     }
     doc_path = None
 
@@ -263,8 +263,8 @@ def send_poa(call):
 def send_insurance(call):
     _, cat_id, opt_id = call.data.split('_')
     insurance = {
-        "opt3": "/Users/viacheslavpetrov/Desktop/IFCM/Сертификат о страховании.pdf",
-        "opt4": "/Users/viacheslavpetrov/Desktop/IFCM/Форма уведомления о наступлении страхового случая.doc"
+        "opt3": get_path_file_to_send(files_to_sending["Certificate_of_Insurance"]["filename"]),
+        "opt4": get_path_file_to_send(files_to_sending["Form_of_notification_about_occurrence_of_an_insured_event"]["filename"])
     }
     doc_path = None
 
@@ -298,8 +298,8 @@ def send_insurance(call):
 def send_licenses(call):
     _, cat_id, opt_id = call.data.split('_')
     license = {
-        "opt1": "/Users/viacheslavpetrov/Desktop/IFCM/Лицензия на перевозки.pdf",
-        "opt2": "/Users/viacheslavpetrov/Desktop/IFCM/Лицензия на обслуживание противопожарного оборудования.pdf",
+        "opt1": get_path_file_to_send(files_to_sending["Transportation_license"]["filename"]),
+        "opt2": get_path_file_to_send(files_to_sending["License_for_maintenance_of_fire_fighting_equipment"]["filename"]),
     }
     doc_path = None
 
@@ -335,11 +335,11 @@ def send_legal_conclusions(call):
 
     # Словарь с путями к документам
     legal_docs = {
-        "opt1": "/Users/viacheslavpetrov/Desktop/IFCM/Запрет заемного труда.doc",
-        "opt2": "/Users/viacheslavpetrov/Desktop/IFCM/Разграничение договоров аренды и оказания услуг.doc",
-        "opt3": "/Users/viacheslavpetrov/Desktop/IFCM/Посторонний предмет в пище.docx",
-        "opt4": "/Users/viacheslavpetrov/Desktop/IFCM/Аутсорсинг и аутстаффинг.doc",
-        "opt5": "/Users/viacheslavpetrov/Desktop/IFCM/Подписание договора «задним числом».doc"
+        "opt1": get_path_file_to_send(files_to_sending["Prohibition_of_agency_labor"]["filename"]),
+        "opt2": get_path_file_to_send(files_to_sending["Distinction_between_Lease_Agreements_and_Provision_of_Services"]["filename"]),
+        "opt3": get_path_file_to_send(files_to_sending["Foreign_object_in_food"]["filename"]),
+        "opt4": get_path_file_to_send(files_to_sending["Outsourcing_and_outstaffing"]["filename"]),
+        "opt5": get_path_file_to_send(files_to_sending["Signing_the_agreement_backdated"]["filename"])
     }
     doc_path = None  # Значение по умолчанию для doc_path
     
