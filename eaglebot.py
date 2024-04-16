@@ -421,14 +421,14 @@ def handle_back(message):
 init_db()
 # init_files_to_sending_dir()
 
-bot.polling(none_stop=True) # dev variant
+#bot.polling(none_stop=True) # dev variant
 
-# #  ? prod variant
-# if __name__=='__main__':
-#     while True:
-#         try:
-#             bot.polling(non_stop=True, interval=0)
-#         except Exception as e:
-#             print(e)
-#             time.sleep(5)
-#             continue
+# prod variant
+if __name__=='__main__':
+    while True:
+        try:
+            bot.polling(non_stop=True, interval=0)
+        except Exception as e:
+            print(e)
+            time.sleep(5)
+            continue
