@@ -6,24 +6,12 @@ import sqlite3
 from telebot.types import ReplyKeyboardRemove
 import sys
 sys.path.append('data')
-from dialog import id_mapping, option_responses
+from dialog import id_mapping, option_responses, get_path_file_to_send, files_to_sending
 
 load_dotenv(find_dotenv())
 bot_token = os.environ.get("BOT_TOKEN")
 
 bot = telebot.TeleBot(bot_token)
-
-files_to_sending = {
-  "Certificate_of_Insurance": {
-    "name": "Сертификат о страховании",
-    "filename": "Сертификат о страховании.pdf"
-  }
-}
-
-def get_path_file_to_send(filepath):
-  return files_to_sending_dir + "/" + filepath
-
-files_to_sending_dir = '/workdir/data/files'
 
 
 database_file = '/var/lib/sqlite/data/eaglebot.db'
@@ -45,7 +33,6 @@ def init_db():
     print("Database file created successfully.")
   else:
     print("Database file already exists.")
-
 
 
 # Добавление или обновление пользователя в базе данных
@@ -432,6 +419,7 @@ def handle_back(message):
 
 
 init_db()
+# init_files_to_sending_dir()
 
 bot.polling(none_stop=True) # dev variant
 

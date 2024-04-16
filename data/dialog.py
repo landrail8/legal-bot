@@ -114,8 +114,6 @@ id_mapping = {
     }
 }
 
-
-
 # Словарь с ответами на каждую опцию
 option_responses = {
     "cat2": {
@@ -183,3 +181,26 @@ option_responses = {
         ЕГРН на актуальную дату. Срок действия выписки 30 календарных дней."
     }
     }
+
+
+files_to_sending = {
+  "Certificate_of_Insurance": {
+    "name": "Сертификат о страховании",
+    "filename": "Сертификат о страховании.pdf"
+  }
+}
+
+
+
+
+def get_path_file_to_send(filepath):
+  return files_to_sending_dir + "/" + filepath
+
+files_to_sending_dir = '/workdir/data/files' # '/var/lib/sqlite/data/files'
+# def init_files_to_sending_dir():
+#   # Check if the file exists
+#   if not os.path.exists(files_to_sending_dir):
+#     os.mkdir(files_to_sending_dir)
+#     print("files_to_sending_dir created successfully.")
+#   else:
+#     print("files_to_sending_dir already exists.")
