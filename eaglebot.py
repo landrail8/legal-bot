@@ -110,61 +110,61 @@ def callback_query(call):
             send_poa(call)
         elif cat_id == "cat3":
             send_agreement(call)
-        elif cat_id == "cat7":
-            send_claim(call)
+        # elif cat_id == "cat7":
+        #     send_claim(call)
         else:
             response = option_responses[f"{cat_id}"][f"{opt_id}"]
             bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id, text=response, reply_markup=None)
 
-def send_claim(call):
-    _, cat_id, opt_id = call.data.split('_')
-    claim = {
-        "opt5": get_path_file_to_send(files_to_sending["Certificate_of_Insurance"]["filename"])
-    }
-    doc_path = None
+# def send_claim(call):
+#     _, cat_id, opt_id = call.data.split('_')
+#     claim = {
+#         "opt5": get_path_file_to_send(files_to_sending["Certificate_of_Insurance"]["filename"])
+#     }
+#     doc_path = None
 
-    if opt_id in claim:
-        doc_path = claim[opt_id]
+#     if opt_id in claim:
+#         doc_path = claim[opt_id]
 
-    if doc_path:
-        try:
-            bot.delete_message(call.message.chat.id, call.message.message_id)
-            with open(doc_path, 'rb') as pdf:
-                bot.send_document(call.message.chat.id, pdf)
-            bot.answer_callback_query(call.id, "Документ отправлен.")
-        except FileNotFoundError:
-            bot.answer_callback_query(call.id, "Файл не найден.")
-    else:
-        if opt_id == "opt1":
-            # Вывод текстового сообщения для новой опции
-            bot.delete_message(call.message.chat.id, call.message.message_id)
-            bot.send_message(call.message.chat.id, text="Проанализировать её содержание, составить проект ответа со ссылками на описание изложенного в претензии видения со своей стороны. Согласовать со своим Руководителем. Направить ответ Клиенту в срок, указанный в претензии/или Договоре.")
-        elif opt_id == "opt2":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
-            bot.send_message(call.message.chat.id, text="Проанализировать её содержание, составить проект ответа со ссылками на описание изложенного в претензии видения со своей стороны. Согласовать со своим Руководителем. Направить ответ Поставщику в срок, указанный в претензии/или Договоре.")
-        elif opt_id == "opt3":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
-            bot.send_message(call.message.chat.id, text="Форма типовой претензии находится в 1С ДО в закладке Главное – Файлы – Шаблоны файлов – Договорные документы, Доверенности.\n\
-Недостающая информация по тексту Претензии заполняется самостоятельно Инициатором. \n\
-При этом, необходимо учитывать порядок направления требований, указанный в Договоре с контрагентом.")
-        elif opt_id == "opt4":
-            bot.delete_message(call.message.chat.id, call.message.message_id)
-            bot.send_message(call.message.chat.id, text="Форма типовой претензии находится в 1С ДО в закладке Главное – Файлы – Шаблоны файлов – Договорные документы, Доверенности.\n\
-Недостающая информация по тексту Претензии заполняется самостоятельно Инициатором. \n\
-При этом, необходимо учитывать порядок направления требований, указанный в Договоре с контрагентом.")
-        else:
-            bot.answer_callback_query(call.id, "Неверный запрос.")
+#     if doc_path:
+#         try:
+#             bot.delete_message(call.message.chat.id, call.message.message_id)
+#             with open(doc_path, 'rb') as pdf:
+#                 bot.send_document(call.message.chat.id, pdf)
+#             bot.answer_callback_query(call.id, "Документ отправлен.")
+#         except FileNotFoundError:
+#             bot.answer_callback_query(call.id, "Файл не найден.")
+#     else:
+#         if opt_id == "opt1":
+#             # Вывод текстового сообщения для новой опции
+#             bot.delete_message(call.message.chat.id, call.message.message_id)
+#             bot.send_message(call.message.chat.id, text="Проанализировать её содержание, составить проект ответа со ссылками на описание изложенного в претензии видения со своей стороны. Согласовать со своим Руководителем. Направить ответ Клиенту в срок, указанный в претензии/или Договоре.")
+#         elif opt_id == "opt2":
+#             bot.delete_message(call.message.chat.id, call.message.message_id)
+#             bot.send_message(call.message.chat.id, text="Проанализировать её содержание, составить проект ответа со ссылками на описание изложенного в претензии видения со своей стороны. Согласовать со своим Руководителем. Направить ответ Поставщику в срок, указанный в претензии/или Договоре.")
+#         elif opt_id == "opt3":
+#             bot.delete_message(call.message.chat.id, call.message.message_id)
+#             bot.send_message(call.message.chat.id, text="Форма типовой претензии находится в 1С ДО в закладке Главное – Файлы – Шаблоны файлов – Договорные документы, Доверенности.\n\
+# Недостающая информация по тексту Претензии заполняется самостоятельно Инициатором. \n\
+# При этом, необходимо учитывать порядок направления требований, указанный в Договоре с контрагентом.")
+#         elif opt_id == "opt4":
+#             bot.delete_message(call.message.chat.id, call.message.message_id)
+#             bot.send_message(call.message.chat.id, text="Форма типовой претензии находится в 1С ДО в закладке Главное – Файлы – Шаблоны файлов – Договорные документы, Доверенности.\n\
+# Недостающая информация по тексту Претензии заполняется самостоятельно Инициатором. \n\
+# При этом, необходимо учитывать порядок направления требований, указанный в Договоре с контрагентом.")
+#         else:
+#             bot.answer_callback_query(call.id, "Неверный запрос.")
 
-        try:
-            bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id, reply_markup=None)
-        except telebot.apihelper.ApiTelegramException:
-            print("Не удалось отредактировать сообщение. Возможно, оно уже было удалено или изменено.")
+#         try:
+#             bot.edit_message_reply_markup(call.message.chat.id, call.message.message_id, reply_markup=None)
+#         except telebot.apihelper.ApiTelegramException:
+#             print("Не удалось отредактировать сообщение. Возможно, оно уже было удалено или изменено.")
 
 
 def send_agreement(call):
     _, cat_id, opt_id = call.data.split('_')
     agreement = {
-        "opt8": get_path_file_to_send(files_to_sending["Certificate_of_Insurance"]["filename"]),
+        # "opt8": get_path_file_to_send(files_to_sending["Certificate_of_Insurance"]["filename"]),
     }
     doc_path = None
 
@@ -189,19 +189,22 @@ def send_agreement(call):
             bot.send_message(call.message.chat.id, text="1С ДО в закладке Главное – Файлы – Шаблоны файлов – Договорные документы, доверенности - Договоры с Клиентами")
         elif opt_id == "opt3":
             bot.delete_message(call.message.chat.id, call.message.message_id)
-            bot.send_message(call.message.chat.id, text="1С ДО в закладке Главное – Файлы – Шаблоны файлов – Договорные документы, доверенности - Закупочные договорные документы")
+            bot.send_message(call.message.chat.id, text="Инструкция по порядку запуска процесса \"Клиентский договор\" находится в 1С ДО в разделе - Файлы - Инструкции")
         elif opt_id == "opt4":
             bot.delete_message(call.message.chat.id, call.message.message_id)
-            bot.send_message(call.message.chat.id, text="Согласование всех документов Компании (Договор, Дополнительное соглашение, Приложение и т.п.) осуществляется через систему 1С ДО. Для этого в системе 1С ДО заполняется карточка документа. Инструкция пользователя по работе с договорными документами находится в 1С ДО, в закладке Главное – Файлы")
+            bot.send_message(call.message.chat.id, text="1С ДО в закладке Главное – Файлы – Шаблоны файлов – Договорные документы, доверенности - Закупочные договорные документы")
         elif opt_id == "opt5":
             bot.delete_message(call.message.chat.id, call.message.message_id)
-            bot.send_message(call.message.chat.id, text="Согласование всех документов Компании (Договор, Дополнительное соглашение, Приложение и т.п.) осуществляется через систему 1С ДО. Для этого в системе 1С ДО заполняется карточка документа. Инструкция пользователя по работе с договорными документами находится в 1С ДО, в закладке Главное – Файлы")
+            bot.send_message(call.message.chat.id, text="Согласование всех документов Компании (Договор, Дополнительное соглашение, Приложение и т.п.) осуществляется через систему 1С ДО. Для этого в системе 1С ДО заполняется карточка документа. Инструкция пользователя по работе с договорными документами находится в 1С ДО в закладке Главное – Файлы")
         elif opt_id == "opt6":
             bot.delete_message(call.message.chat.id, call.message.message_id)
-            bot.send_message(call.message.chat.id, text="Согласование всех документов Компании (Договор, Дополнительное соглашение, Приложение и т.п.) осуществляется через систему 1С ДО. Для этого в системе 1С ДО заполняется карточка документа. Инструкция пользователя по работе с договорными документами находится в 1С ДО, в закладке Главное – Файлы")
+            bot.send_message(call.message.chat.id, text="Согласование всех документов Компании (Договор, Дополнительное соглашение, Приложение и т.п.) осуществляется через систему 1С ДО. Для этого в системе 1С ДО заполняется карточка документа. Инструкция пользователя по работе с договорными документами находится в 1С ДО в закладке Главное – Файлы")
         elif opt_id == "opt7":
             bot.delete_message(call.message.chat.id, call.message.message_id)
-            bot.send_message(call.message.chat.id, text="Согласование всех документов Компании (Договор, Дополнительное соглашение, Приложение и т.п.) осуществляется через систему 1С ДО. Для этого в системе 1С ДО заполняется карточка документа. Инструкция пользователя по работе с договорными документами находится в 1С ДО, в закладке Главное – Файлы")
+            bot.send_message(call.message.chat.id, text="Согласование всех документов Компании (Договор, Дополнительное соглашение, Приложение и т.п.) осуществляется через систему 1С ДО. Для этого в системе 1С ДО заполняется карточка документа. Инструкция пользователя по работе с договорными документами находится в 1С ДО в закладке Главное – Файлы")
+        elif opt_id == "opt8":
+            bot.delete_message(call.message.chat.id, call.message.message_id)
+            bot.send_message(call.message.chat.id, text="Согласование всех документов Компании (Договор, Дополнительное соглашение, Приложение и т.п.) осуществляется через систему 1С ДО. Для этого в системе 1С ДО заполняется карточка документа. Инструкция пользователя по работе с договорными документами находится в 1С ДО в закладке Главное – Файлы")
         else:
             bot.answer_callback_query(call.id, "Неверный запрос.")
 
@@ -214,7 +217,7 @@ def send_agreement(call):
 def send_poa(call):
     _, cat_id, opt_id = call.data.split('_')
     poa = {
-        "opt5": get_path_file_to_send(files_to_sending["Certificate_of_Insurance"]["filename"]),
+        "opt5": get_path_file_to_send(files_to_sending["Instruction_get_power_of_attorney"]["filename"]),
     }
     doc_path = None
 
@@ -233,25 +236,25 @@ def send_poa(call):
         if opt_id == "opt1":
             # Вывод текстового сообщения для новой опции
             bot.delete_message(call.message.chat.id, call.message.message_id)
-            bot.send_message(call.message.chat.id, text="Оформление доверенности осуществляется самостоятельно, через систему 1С ДО. Инструкция по запуску доверенности находится  ___")
+            bot.send_message(call.message.chat.id, text="Оформление доверенности осуществляется самостоятельно, через систему 1С ДО. Инструкция по запуску Доверенности находится в 1С ДО -  Файлы - Инструкции.")
         elif opt_id == "opt2":
             bot.delete_message(call.message.chat.id, call.message.message_id)
-            bot.send_message(call.message.chat.id, text="Необходимо САМОСТОЯТЕЛЬНО отслеживать срок действия своей Доверенности и в случае её окончания, запустить доверенность на новый срок через систему 1С ДО.")
+            bot.send_message(call.message.chat.id, text="Необходимо САМОСТОЯТЕЛЬНО отслеживать срок действия своей Доверенности и в случае её окончания запустить доверенность на новый срок через систему 1С ДО.")
         elif opt_id == "opt3":
             bot.delete_message(call.message.chat.id, call.message.message_id)
-            bot.send_message(call.message.chat.id, text="МЧД используется для подписания электронных документов от имени Компании. \n\
-            Прежде чем получить электронно-цифровую подпись (ЭЦП) должна быть оформлена МЧД. \n\
-            Для доверенностей запущенных после 01.12.2023 года в 1С ДО настроена автоматическая задача на выпуск МЧД в процессе «Доверенность». Для выпущенных ранее, в карточке доверенности, через кнопку Исполнить направить задачу Ассистенту юридического отдела на выпуск МЧД, с указанием следующей информации, без предоставления сканов: \n\
-            - ИНН ФЛ: \n\
-            - СНИЛС:  \n\
-            - дата рождения: \n\
-            - гражданство: \n\
-            - в какой информационной системе будут подписываться документы: \n\
-            - подтверждение от непосредственного руководителя, не ниже должности Регионального директора: (ДА/НЕТ). \n\
-            МЧД действует на срок действия доверенности выпущенной в 1С ДО, в случае, если срок действия ЭЦП закончился, а срок действия доверенности продолжает действовать, повторный выпуск МЧД не требуется, запрос направляется только на выпуск ЭЦП Специалисту по документообороту.")
+            bot.send_message(call.message.chat.id, text="МЧД используется для подписания электронных документов от имени Компании с помощью ЭЦП (электронно-цифровую подпись). \n\
+Прежде чем получить ЭЦП на сотрудника должна быть оформлена МЧД. \n\
+Для доверенностей запущенных после 01.12.2023 года в 1С ДО настроена автоматическая задача на выпуск МЧД в процессе «Доверенность». Для выпущенных ранее, в карточке доверенности, через кнопку Исполнить направить задачу Ассистенту юридического отдела на выпуск МЧД, с указанием следующей информации, без предоставления сканов: \n\
+- ИНН ФЛ: \n\
+- СНИЛС:  \n\
+- дата рождения: \n\
+- гражданство: \n\
+- в какой информационной системе будут подписываться документы:\n\
+- подтверждение от непосредственного руководителя, не ниже должности Регионального директора: (ДА/НЕТ). \n\
+МЧД действует на срок действия доверенности выпущенной в 1С ДО, в случае, если срок действия ЭЦП закончился, а срок действия доверенности продолжает действовать, повторный выпуск МЧД не требуется, запрос направляется только на выпуск ЭЦП Специалисту по документообороту")
         elif opt_id == "opt4":
             bot.delete_message(call.message.chat.id, call.message.message_id)
-            bot.send_message(call.message.chat.id, text=":)")
+            bot.send_message(call.message.chat.id, text="Для получения сертификата ЭЦП, обратитесь к Светлане Совертковой (svetlana.sovertkova@ifcmgroup.ru) или Екатерине Мелешенко (ekaterina.meleshenko@ifcmgroup.ru)")
         else:
             bot.answer_callback_query(call.id, "Неверный запрос.")
 
@@ -283,7 +286,7 @@ def send_insurance(call):
         if opt_id == "opt1":
             # Вывод текстового сообщения для новой опции
             bot.delete_message(call.message.chat.id, call.message.message_id)
-            bot.send_message(call.message.chat.id, text="Гражданская ответственность ООО «АЙЭФСИЭМ ГРУПП» застрахована на территории РФ. Сертификат страхования находится в 1С ДО, в закладке Главное – Файлы - Legal в папке Учредительные документы.")
+            bot.send_message(call.message.chat.id, text="Гражданская ответственность ООО «АЙЭФСИЭМ ГРУПП» застрахована на территории РФ. Сертификат страхования находится в 1С ДО, в закладке Главное – Файлы - Legal в папке Учредительные документы")
         elif opt_id == "opt2":
             bot.delete_message(call.message.chat.id, call.message.message_id)
             bot.send_message(call.message.chat.id, text="При наступлении страхового случая незамедлительно уведомите ЮД и своего Руководителя об этом. С момента наступления страхового случая у Компании есть только 3 дня на уведомление о произошедшем Страховой компании.")
@@ -315,10 +318,10 @@ def send_licenses(call):
         except FileNotFoundError:
             bot.answer_callback_query(call.id, "Файл не найден.")
     else:
-        if opt_id == "opt4":
+        if opt_id == "opt3":
             # Вывод текстового сообщения для новой опции
             bot.delete_message(call.message.chat.id, call.message.message_id)
-            bot.send_message(call.message.chat.id, text="Для того, чтобы получить нужную вам лицензию обратитесь к ***")
+            bot.send_message(call.message.chat.id, text="Для того, чтобы получить иную лицензию, которая может потребоваться вам в работе, прежде всего необходимо обратиться к своему Руководителю.")
         else:
             bot.answer_callback_query(call.id, "Неверный запрос.")
 
@@ -405,12 +408,12 @@ def send_instruction_buttons(message):
 @bot.message_handler(func=lambda message: message.text == "Инструкция")
 def handle_instruction(message):
     markup = generate_main_keyboard()
-    bot.send_message(message.chat.id, "Если Вам необходима оперативная поддержка в повседневной работе по наиболее часто возникающим юридическим вопросам - то этот чат-бот поможет вам получить ответ в максимально короткий срок. Для использования функционала чат-бота обязательно необходимо пройти процедуру авторизации согласно описанию при активации работы с чат-ботом. Ваши персональные данные обрабатываются надлежащим образом в соответствии с действующим законодательством РФ и ЛНА iFCM Group. Если вы не получили пароль - обратитесь в ЮД по почте legaldepartment@ifcmgroup.ru согласно вкладке \" Запрос в ЮД \" С наилучшими пожеланиями, Команда ЮД iFCM Group!", reply_markup=markup)
+    bot.send_message(message.chat.id, "Если Вам необходима оперативная поддержка в повседневной работе по наиболее часто возникающим юридическим вопросам - то этот чат-бот поможет вам получить ответ в максимально короткий срок. С наилучшими пожеланиями, Команда ЮД iFCM Group!", reply_markup=markup)
 
 @bot.message_handler(func=lambda message: message.text == "Поддержка")
 def handle_support(message):
     markup = generate_main_keyboard()
-    bot.send_message(message.chat.id, "В случае возникновения технических вопросов по работе чат-бота, пожалуйста, обращайтесь к: @ ", reply_markup=markup)
+    bot.send_message(message.chat.id, "В случае возникновения технических вопросов по работе чат-бота, пожалуйста, обращайтесь по адресу: legalchatbot@ifcmgroup.ru", reply_markup=markup)
    
 @bot.message_handler(func=lambda message: message.text == "Назад")
 def handle_back(message):
